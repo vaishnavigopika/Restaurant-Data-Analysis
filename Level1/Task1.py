@@ -1,14 +1,15 @@
+#Task 1: To find the top 3 cuisines and their average percentage
+#importing required libraries
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-
+#Reading the dataset and converting it into dataframe
 from pathlib import Path
 script_dir = Path(__file__).resolve().parent
 df = pd.read_csv(script_dir.parent / 'Dataset' / 'Dataset.csv')
 
 cuisine=df["Cuisines"].fillna('')
-print(cuisine)
-
+#Function to create the cuisine column into a list
 def createlist(cuisine):
   newlist=[]
   for i in cuisine:
@@ -17,7 +18,7 @@ def createlist(cuisine):
       j=j.strip()
       newlist.append(j)
   return newlist
-
+#Main function which counts the top 3 cuisines and their average percentage.
 def tops(mainlist):
   count={}
   sortedlist=[]
@@ -42,6 +43,7 @@ def tops(mainlist):
 
 mainlist=createlist(cuisine)
 name,counts=tops(mainlist)
+#plotting bar graph to show the top3 cuisines
 plt.bar(name,counts)
 plt.xlabel("Cuisine")
 plt.ylabel("Count")
