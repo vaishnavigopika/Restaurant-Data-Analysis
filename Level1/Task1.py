@@ -3,12 +3,13 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-#Reading the dataset and converting it into dataframe
-from pathlib import Path
-script_dir = Path(__file__).resolve().parent
-df = pd.read_csv(script_dir.parent / 'Dataset' / 'Dataset.csv')
 
+#Reading the dataset and converting it into dataframe
+df = pd.read_csv(r"E:\Cognifyz Data Analysis\Dataset\Dataset.csv")
+
+#Selecting the cuisine column and filling the null values with empty string
 cuisine=df["Cuisines"].fillna('')
+
 #Function to create the cuisine column into a list
 def createlist(cuisine):
   newlist=[]
@@ -18,6 +19,7 @@ def createlist(cuisine):
       j=j.strip()
       newlist.append(j)
   return newlist
+
 #Main function which counts the top 3 cuisines and their average percentage.
 def tops(mainlist):
   count={}
@@ -43,6 +45,7 @@ def tops(mainlist):
 
 mainlist=createlist(cuisine)
 name,counts=tops(mainlist)
+
 #plotting bar graph to show the top3 cuisines
 plt.bar(name,counts)
 plt.xlabel("Cuisine")
