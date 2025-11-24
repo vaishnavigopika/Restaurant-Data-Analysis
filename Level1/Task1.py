@@ -2,7 +2,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-df=pd.read_csv('Dataset .csv')
+from pathlib import Path
+script_dir = Path(__file__).resolve().parent
+df = pd.read_csv(script_dir.parent / 'Dataset' / 'Dataset.csv')
+
 cuisine=df["Cuisines"].fillna('')
 print(cuisine)
 
@@ -31,8 +34,10 @@ def tops(mainlist):
   for i in top:
     name.append(i[0])
     counts.append(i[1])
-  total_count = sum(count.values())
-  print(total_count)
+  totalcount = sum(count.values())
+  for i in top:
+    percentage=(i[1]/totalcount)*100
+    print("The average percentage of",i[0],"cuisine is: ",percentage)
   return name,counts
 
 mainlist=createlist(cuisine)
